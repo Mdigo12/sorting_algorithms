@@ -1,39 +1,36 @@
 #include "sort.h"
 
 /**
- * shell_sort - sorts an array of integers in ascending
- *	order using the Shell sort algorithm, using the Knuth sequence
- *
- * Desc: The Knuth sequence
- *	n+1 = n * 3 + 1
- *	1, 4, 13, 40, 121, ...
- *
- * @array: An array to be sorted
- * @size: No of elements in an array
- *
- * Return - Void
+ * shell_sort - A function tat sorts an array usin shell algorithm.
+ * @array: The array to sort.
+ * @size: The length of the array.
+ * Return: Nothing.
  */
-
 void shell_sort(int *array, size_t size)
 {
-	int gap, i, j, tmp;
+	unsigned int i = 0, j = 0, gap = 0;
+	int aux = 0;
 
-	gap = 1;
-	if (array == NULL || size == 0)
+	if (array == NULL || size < 2)
 		return;
 
-	for (gap = (gap * 3 + 1); gap >= 1; gap = gap / 3)
+	while (gap < size / 3)
+		gap = gap * 3 + 1;
+
+	for (; gap > 0; gap = (gap - 1) / 3)
 	{
-		for (j = gap; j < (int)size; j++)
+		for (i = gap; i < size; i++)
 		{
-			for (i = j - gap; i >= 0; i = i - gap)
+			aux = array[i];
+			for (j = i; j >= gap && array[j - gap] > aux;
+					j -= gap)
 			{
-				if (array[i + gap] > array[i])
-					break;
-				tmp = array[i + gap];
-				array[i + gap] = array[i];
-				array[i] = tmp;
+				if (array[j] != array[j - gap])
+					array[j] = array[j - gap];
 			}
+			if (array[j] != aux)
+				array[j] = aux;
+
 		}
 		print_array(array, size);
 	}
