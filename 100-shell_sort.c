@@ -6,9 +6,10 @@
  * @size: The length of the array.
  * Return: Nothing.
  */
+
 void shell_sort(int *array, size_t size)
 {
-	unsigned int i = 0, j = 0, gap = 0;
+	unsigned int i = 0, j = 0, gap = 1;
 	int aux = 0;
 
 	if (array == NULL || size < 2)
