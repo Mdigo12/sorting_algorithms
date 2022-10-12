@@ -32,5 +32,9 @@ void print_list(const listint_t *list);
 void quick_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
-
+/*104-heap_sort.c*/
+void heap_sort(int *array, size_t size);
+void swap(int *a, int *b);
+void heapify(int *array, int end, int start, size_t size);
+/*------------*/
 #endif /*SORT_H*/
